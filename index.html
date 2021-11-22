@@ -95,14 +95,110 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      
+
+      try {
+
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+
+      } catch (err) {
+        throw new ReferenceError('Operation is not allowed');
+      }
+      finally{
+        console.log('process completed')
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+
+
+    var button = document.getElementById("error-btns").querySelectorAll('button');
+    
+    button[0].addEventListener("click", function(){
+      console.log('Console Log Demo');
+    });
+    button[1].addEventListener("click", function(){
+      console.error('Console Error Demo');
+    });
+    button[2].addEventListener("click", function(){
+      console.count('Count Button');
+    });
+    button[3].addEventListener("click", function(){
+      console.warn('Warn Button');
+    });
+    button[4].addEventListener("click", function(){
+      const number = 2;
+      const errorMsg = 'The number does not equal 3';
+      console.assert(number==0,{number,errorMsg});
+    });
+    button[5].addEventListener("click", function(){
+      console.clear();
+    });
+    button[6].addEventListener("click", function(){
+      console.dir(button[6]);
+    });
+    button[7].addEventListener("click", function(){
+      console.dirxml(button[7]);
+    });
+    button[8].addEventListener("click", function(){
+      console.group('console.group');
+    });
+    button[9].addEventListener("click", function(){
+      console.groupEnd('console.group');
+    });
+    button[10].addEventListener("click", function(){
+      const objarr = [{name: 'Software Engineering', num: '110'},{name:'Programming Language', num: '130'},{name: 'Advanced Software Engineering', num:'112'}];
+      console.table(objarr);
+    });
+    button[11].addEventListener("click", function(){
+      console.time();
+    });
+    button[12].addEventListener("click", function(){
+      console.timeEnd('Timer Button');
+    });
+    button[13].addEventListener("click", function(){
+      
+      const deep = () => { deeper(); };
+      const deeper = () => { deepest(); };
+      const deepest = () => { console.trace(''); };
+      deep();
+    });
+
+    button[14].addEventListener("click", function(){
+      throw new MyError();
+    });
+
+    class MyError extends Error {
+    constructor(message) {
+      super(message);
+      this.name = "A Global error was thrown."; 
+    }
+  }
+  window.onerror = function (error,lineno, message) { 
+    console.log(error);
+    console.log(lineno)
+    console.log(message)
+  }
+
+
+
+
+
+
   </script>
+
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "5fa971f9b1be48199d4c37f493252b6a"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
+                        
 </body>
 
 </html>
